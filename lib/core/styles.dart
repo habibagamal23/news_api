@@ -2,6 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'colors_mangment.dart';
+import 'package:flutter/material.dart';
+
+class AppThemes {
+  static final ThemeData lightTheme = ThemeData(
+    brightness: Brightness.light,
+    primarySwatch: Colors.blue,
+    scaffoldBackgroundColor: Colors.white,
+    appBarTheme: const AppBarTheme(
+      color: ColorsManager.mainBlue,
+      titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
+    ),
+  );
+
+  static final ThemeData darkTheme = ThemeData(
+    brightness: Brightness.dark,
+    primarySwatch: Colors.blueGrey,
+    scaffoldBackgroundColor: Colors.black,
+    appBarTheme:const AppBarTheme(
+      color: Colors.black,
+      titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
+    ),
+  );
+}
+
 
 class TextStyles {
   static TextStyle font24Black700Weight = TextStyle(

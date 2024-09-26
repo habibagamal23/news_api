@@ -12,7 +12,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (context) => OnBoarding());
 
       case ConstantString.homeScreen:
-        return MaterialPageRoute(builder: (context) => HomeScreen());
+    return MaterialPageRoute(
+        builder: (context) => HomeScreen());
 
       case ConstantString.newsDetailScreen:
       // Extract the Article from arguments

@@ -2,8 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 
-import '../../../core/webservice/webservice.dart';
-import '../model/NewsModel.dart';
+import '../../../../core/webservice/webservice.dart';
+import '../../model/NewsModel.dart';
 part 'artical_state.dart';
 
 class ArticalCubit extends Cubit<ArticalState> {

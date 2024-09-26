@@ -5,7 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/colors_mangment.dart';
 import '../../core/constant.dart';
 import '../../core/styles.dart';
-import 'logic/artical_cubit.dart';
+import 'logic/artical/artical_cubit.dart';
+import 'logic/them/theme_cubit.dart';
 import 'model/NewsModel.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -14,38 +15,46 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("News App"),
-      ),
-      body: BlocBuilder<ArticalCubit, ArticalState>(
-        builder: (context, state) {
-          if (state is ArticalLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is ArticalScuess) {
-            return ListView.builder(
-              itemCount: state.articles.length,
-              itemBuilder: (context, index) {
-                final article = state.articles[index];
-                return NewsCard(
-                  article: article,
-                );
+        appBar: AppBar(
+          title: const Text("News App"),
+          actions: [
+            // Theme toggle switch
+            Switch(
+              activeColor: Colors.grey,
+              inactiveThumbColor: ColorsManager.mainBlue,
+              value: context.read<ThemeCubit>().state.themeData.brightness == Brightness.dark,
+              onChanged: (value) {
+                context.read<ThemeCubit>().toggleTheme(); // Toggle the theme
               },
-            );
-          } else if (state is ArticalFaliuere) {
-            return Center(
-              child: Text(state.errmsg,
-                  style: TextStyles.font13GrayRegular
-                      .copyWith(color: ColorsManager.red)),
-            );
-          }
-          return const Center(
-              child: Text('Select a category to load news'));
-        },
-      ));
+            ),
+          ],
+        ),
+        body: BlocBuilder<ArticalCubit, ArticalState>(
+          builder: (context, state) {
+            if (state is ArticalLoading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is ArticalScuess) {
+              return ListView.builder(
+                itemCount: state.articles.length,
+                itemBuilder: (context, index) {
+                  final article = state.articles[index];
+                  return NewsCard(
+                    article: article,
+                  );
+                },
+              );
+            } else if (state is ArticalFaliuere) {
+              return Center(
+                child: Text(state.errmsg,
+                    style: TextStyles.font13GrayRegular
+                        .copyWith(color: ColorsManager.red)),
+              );
+            }
+            return const Center(child: Text('Select a category to load news'));
+          },
+        ));
   }
 }
-
-
 
 class NewsCard extends StatelessWidget {
   final Article article;
@@ -75,6 +84,9 @@ class NewsCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Article Image
+          AspectRatio(
+          aspectRatio: 16 / 8,
+          child:
             ClipRRect(
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(15),
@@ -82,23 +94,22 @@ class NewsCard extends StatelessWidget {
               ),
               child: Image.network(
                 article.urlToImage ??
-                    'https://via.placeholder.com/150', // Fallback for missing image
+                    'https://via.placeholder.com/150',
                 height: 180.h, // Responsive height
                 width: double.infinity,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   return Container(
-                    height: 180.h,
-                    color: Colors.grey[200],
+                    color: Colors.grey[200], // Fallback color if image fails
                     child: Icon(
                       Icons.broken_image,
+                      size: 50.sp, // Responsive icon size
                       color: Colors.grey[400],
-                      size: 50.sp,
                     ),
                   );
                 },
               ),
-            ),
+            ),),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Column(
@@ -107,9 +118,12 @@ class NewsCard extends StatelessWidget {
                   // Title
                   Text(
                     article.title ?? 'No Title Available',
-                    style: TextStyles.font24Black700Weight,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
+                    style:Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24.sp,
+                      overflow: TextOverflow.ellipsis,// Dynamic text color from the theme
+                    ),
+
                   ),
                   SizedBox(height: 8.h),
 
@@ -143,5 +157,3 @@ class NewsCard extends StatelessWidget {
     );
   }
 }
-
-

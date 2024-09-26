@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nwesapi_app/features/home/logic/artical_cubit.dart';
+import 'package:nwesapi_app/features/home/logic/artical/artical_cubit.dart';
 import '../../core/colors_mangment.dart';
 import '../../core/constant.dart';
 import '../../core/styles.dart';

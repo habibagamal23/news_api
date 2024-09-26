@@ -1,17 +1,15 @@
-
 part of 'theme_cubit.dart';
-
 
 @immutable
 abstract class ThemeState {
   final ThemeData themeData;
-  ThemeState(this.themeData); // Remove 'const' here
+  const ThemeState(this.themeData);
 }
 
-class ThemeInitial extends ThemeState {
-  ThemeInitial() : super(AppThemes.lightTheme);  // Default theme is light, no 'const'
+class LightThemeState extends ThemeState {
+  LightThemeState() : super(AppThemes.lightTheme);
 }
 
-class ThemeChanged extends ThemeState {
-  ThemeChanged(ThemeData themeData) : super(themeData); // No 'const' here as well
+class DarkThemeState extends ThemeState {
+  DarkThemeState() : super(AppThemes.darkTheme);
 }

@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
             Switch(
               activeColor: Colors.grey,
               inactiveThumbColor: ColorsManager.mainBlue,
-              value: context.read<ThemeCubit>().state.themeData.brightness == Brightness.dark,
+              value:context.read<ThemeCubit>().state is DarkThemeState,
               onChanged: (value) {
                 context.read<ThemeCubit>().toggleTheme(); // Toggle the theme
               },

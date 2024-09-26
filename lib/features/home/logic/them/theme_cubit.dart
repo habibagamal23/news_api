@@ -4,42 +4,36 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../../core/styles.dart';
-
 part 'theme_state.dart';
 
 class ThemeCubit extends Cubit<ThemeState> {
-  ThemeCubit() : super(ThemeInitial()) {
-    _getThemeFromPrefs(); // Load saved theme on initialization
+  ThemeCubit() : super(LightThemeState()) {
+    _loadThemeFromPrefs();
   }
 
-  // Save the theme preference to SharedPreferences
-  Future<void> _saveThemeToPrefs(Brightness brightness) async {
-    final themeIndex = brightness == Brightness.light ? 0 : 1;
+  Future<void> _saveThemeToPrefs(bool isDarkTheme) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setInt('theme', themeIndex);
+    await prefs.setBool('isDarkTheme', isDarkTheme);
   }
 
-  // Retrieve the saved theme from SharedPreferences
-  Future<void> _getThemeFromPrefs() async {
+  Future<void> _loadThemeFromPrefs() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final savedThemeIndex = prefs.getInt('theme') ?? 0;
-    if (savedThemeIndex == 0) {
-      emit(ThemeChanged(AppThemes.lightTheme));
+    final isDarkTheme = prefs.getBool('isDarkTheme') ?? false;
+    if (isDarkTheme) {
+      emit(DarkThemeState());
     } else {
-      emit(ThemeChanged(AppThemes.darkTheme));
+      emit(LightThemeState());
     }
   }
 
-  // Toggle between light and dark theme
   void toggleTheme() {
-    if (state.themeData.brightness == Brightness.light) {
-      emit(ThemeChanged(AppThemes.darkTheme));
-      _saveThemeToPrefs(Brightness.dark);
+    if (state is LightThemeState) {
+      emit(DarkThemeState());
+      _saveThemeToPrefs(true);
     } else {
-      emit(ThemeChanged(AppThemes.lightTheme));
-      _saveThemeToPrefs(Brightness.light);
+      emit(LightThemeState());
+      _saveThemeToPrefs(false);
     }
   }
 }

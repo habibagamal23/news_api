@@ -25,7 +25,7 @@ class NewsDetailScreen extends StatelessWidget {
               AspectRatio(
                 aspectRatio: 16 / 9, // Ensure the image retains a proper aspect ratio
                 child: Image.network(
-                  article.urlToImage!,
+                  article.urlToImage??"",
                   fit: BoxFit.cover, // Ensure the image covers the available space
                   errorBuilder: (context, error, stackTrace) {
                     return Container(

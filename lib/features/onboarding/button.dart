@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nwesapi_app/features/home/logic/artical/artical_cubit.dart';
-import '../../core/colors_mangment.dart';
-import '../../core/constant.dart';
-import '../../core/styles.dart';
+import '../../core/utils/colors_mangment.dart';
+import '../../core/utils/constant.dart';
+import '../../core/utils/styles.dart';
 
 class GetStartedButton extends StatelessWidget {
   const GetStartedButton({super.key});
@@ -12,11 +11,10 @@ class GetStartedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-       context.read<ArticalCubit>().getTopNews();
         Navigator.pushReplacementNamed(context, ConstantString.homeScreen);
       },
       style: TextButton.styleFrom(
-        backgroundColor: ColorsManager.mainBlue,  // Using Theme or ColorsManager
+        backgroundColor: ColorsManager.mainBlue,
         minimumSize: const Size(double.infinity, 52),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
@@ -24,7 +22,7 @@ class GetStartedButton extends StatelessWidget {
       ),
       child: Text(
         'Get Started',
-        style: TextStyles.font16WhiteSemiBold,
+        style: Theme.of(context).textTheme.labelLarge,
       ),
     );
   }

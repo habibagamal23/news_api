@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../features/home/deatiales_screen.dart';
-import '../features/home/home.dart';
-import '../features/onboarding/onboarding.dart';
+import '../../features/home/ui/deatiales_screen.dart';
+import '../../features/home/ui/home.dart';
+import '../../features/onboarding/onboarding.dart';
 import 'constant.dart';
-import '../features/home/model/NewsModel.dart'; // Import the Article model
+import '../../features/home/model/NewsModel.dart'; // Import the Article model
 
 class AppRoutes {
   Route<dynamic>? onGenerateRoute(RouteSettings settings) {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nwesapi_app/core/colors_mangment.dart';
+import 'package:nwesapi_app/core/utils/colors_mangment.dart';
 import 'package:nwesapi_app/features/onboarding/button.dart';
-import '../../core/styles.dart';
+import '../../core/utils/styles.dart';
 
 class OnBoarding extends StatelessWidget {
   const OnBoarding({super.key});
@@ -29,14 +29,12 @@ class OnBoarding extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 30.w),
                 child: Column(
                   children: [
-                    Text(
-                      'GlobalNews',
-                      style: TextStyles.font24Black700Weight.copyWith(color: ColorsManager.red),
-                    ),
+                    Text('GlobalNews',
+                        style: Theme.of(context).textTheme.headlineLarge),
                     SizedBox(height: 10.h),
                     Text(
                       'Stay informed with the latest news across various categories. Get real-time updates and insights from around the world.',
-                      style: TextStyles.font13GrayRegular,
+                      style: Theme.of(context).textTheme.bodyMedium,
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 30.h),

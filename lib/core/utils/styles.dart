@@ -42,9 +42,8 @@ class AppThemes {
 
 class TextStyles {
   static TextStyle headline1 = TextStyle(
-    fontSize: 32,
-    fontWeight: FontWeight.bold,
-    color: ColorsManager.mainBlue,
+      fontSize: 50,
+      color: Colors.white60
   );
 
   static TextStyle headline2 = TextStyle(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nwesapi_app/features/home/logic/Articallogic/articals_cubit.dart';
 import '../../core/utils/colors_mangment.dart';
 import '../../core/utils/constant.dart';
 import '../../core/utils/styles.dart';
@@ -11,6 +12,7 @@ class GetStartedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
+        context.read<ArticalsCubit>().getNews();
         Navigator.pushReplacementNamed(context, ConstantString.homeScreen);
       },
       style: TextButton.styleFrom(

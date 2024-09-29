@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nwesapi_app/core/utils/constant.dart';
 
 import '../../../core/utils/styles.dart';
 import '../model/NewsModel.dart';
@@ -14,8 +15,11 @@ class NewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //navigate task
     return InkWell(
-      onTap: () {},
+      onTap: () {
+Navigator.pushNamed(context, ConstantString.newsDetailScreen, arguments: article);
+      },
       child: Card(
         elevation: 3,
         margin: const EdgeInsets.all(10),
@@ -26,7 +30,7 @@ class NewsCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AspectRatio(
-              aspectRatio: 16 / 8,
+              aspectRatio: 16 / 6,
               child: ClipRRect(
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(15),
@@ -51,18 +55,16 @@ class NewsCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding:  EdgeInsets.all(10.r),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     article.title ?? 'No Title Available',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24.sp,
-                          overflow: TextOverflow
-                              .ellipsis, // Dynamic text color from the theme
-                        ),
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      fontSize: 20,
+                      overflow: TextOverflow.ellipsis
+                    )
                   ),
                   SizedBox(height: 8.h),
                   Text(
@@ -72,14 +74,9 @@ class NewsCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: 8.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'By ${article.author ?? 'Unknown Author'}',
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                    ],
+                  Text(
+                    'By ${article.author ?? 'Unknown Author'}',
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ],
               ),

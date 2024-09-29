@@ -34,7 +34,7 @@ class OnBoarding extends StatelessWidget {
                     SizedBox(height: 10.h),
                     Text(
                       'Stay informed with the latest news across various categories. Get real-time updates and insights from around the world.',
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style:Theme.of(context).textTheme.bodyMedium,
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 30.h),

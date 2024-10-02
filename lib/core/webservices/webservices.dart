@@ -24,16 +24,17 @@ class WebServices {
           "https://newsapi.org/v2/top-headlines?country=us&apiKey=7442ff1006a5458ab13d6890abfc8019");
 
       if (respone.statusCode == 200) {
-        Map<String, dynamic> jsondata = respone.data;
-        List<dynamic> articals = jsondata["articles"];
+        List<dynamic> articles = respone.data["articles"];
+        return articles.map((article) => Article.fromJosn(article)).toList();
 
-        List<Article> articallist = [];
-
-        for (var artical in articals) {
-          Article artmodel = Article.fromJosn(artical);
-          articallist.add(artmodel);
-        }
-        return articallist;
+        // Map<String, dynamic> jsondata = respone.data;
+        // List<dynamic> articals = jsondata["articles"];
+        // List<Article> articallist = [];
+        // for (var artical in articals) {
+        //   Article artmodel = Article.fromJosn(artical);
+        //   articallist.add(artmodel);
+        // }
+        // return articallist;
       } else {
         throw Exception(respone.data["error"]["message"]);
       }

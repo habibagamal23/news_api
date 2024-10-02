@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nwesapi_app/core/utils/constant.dart';
 
-import '../../../core/utils/styles.dart';
+import '../../../core/utils/routes.dart';
 import '../model/NewsModel.dart';
 
 class NewsCard extends StatelessWidget {
@@ -18,7 +17,8 @@ class NewsCard extends StatelessWidget {
     //navigate task
     return InkWell(
       onTap: () {
-Navigator.pushNamed(context, ConstantString.newsDetailScreen, arguments: article);
+        Navigator.pushNamed(context, RoutesString.newsDetailScreen,
+            arguments: article);
       },
       child: Card(
         elevation: 3,
@@ -55,17 +55,13 @@ Navigator.pushNamed(context, ConstantString.newsDetailScreen, arguments: article
               ),
             ),
             Padding(
-              padding:  EdgeInsets.all(10.r),
+              padding: EdgeInsets.all(10.r),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    article.title ?? 'No Title Available',
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      fontSize: 20,
-                      overflow: TextOverflow.ellipsis
-                    )
-                  ),
+                  Text(article.title ?? 'No Title Available',
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          fontSize: 20, overflow: TextOverflow.ellipsis)),
                   SizedBox(height: 8.h),
                   Text(
                     article.description ?? 'No Description Available',

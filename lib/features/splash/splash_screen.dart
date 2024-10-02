@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../core/SharedPrefsHelper.dart';
-import '../../core/utils/constant.dart';
+import '../../core/sharedPrafrance/SharedPrefsHelper.dart';
+import '../../core/utils/routes.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -35,9 +35,9 @@ class _SplashScreenState extends State<SplashScreen> {
     bool hasVisitedOnboarding = await SharedPrefsHelper.getVisitedOnboarding();
 
     if (hasVisitedOnboarding) {
-      Navigator.pushReplacementNamed(context, ConstantString.homeScreen);
+      Navigator.pushReplacementNamed(context, RoutesString.homeScreen);
     } else {
-      Navigator.pushReplacementNamed(context, ConstantString.onBoardingScreen);
+      Navigator.pushReplacementNamed(context, RoutesString.onBoardingScreen);
     }
   }
 }

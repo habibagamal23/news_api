@@ -10,7 +10,7 @@ class ArticalsCubit extends Cubit<ArticalsState> {
 
   WebServices webServices = WebServices();
 
-  late List<Article> myartical;
+  List<Article> myartical = [];
 
   Future getNews() async {
     emit(ArticalsLoading());

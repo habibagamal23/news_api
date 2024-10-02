@@ -4,9 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nwesapi_app/features/home/logic/Articallogic/articals_cubit.dart';
 import 'package:nwesapi_app/features/home/logic/themlogic/them_cubit.dart';
 
-import '../../../core/SharedPrefsHelper.dart';
+import '../../../core/sharedPrafrance/SharedPrefsHelper.dart';
 import '../../../core/utils/colors_mangment.dart';
 import '../../../core/utils/constant.dart';
+import '../../../core/utils/routes.dart';
 import '../../../core/utils/styles.dart';
 
 import '../model/NewsModel.dart';
@@ -25,7 +26,8 @@ class HomeScreen extends StatelessWidget {
               icon: Icon(Icons.refresh),
               onPressed: () async {
                 await SharedPrefsHelper.clearPreferences();
-                Navigator.pushReplacementNamed(context, ConstantString.onBoardingScreen);
+                Navigator.pushReplacementNamed(
+                    context, RoutesString.onBoardingScreen);
               },
             ),
             Switch(
@@ -42,7 +44,7 @@ class HomeScreen extends StatelessWidget {
         body: BlocBuilder<ArticalsCubit, ArticalsState>(
             builder: (context, state) {
           if (state is ArticalsLoading) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (state is ArticalsSucuess) {
             return ListView.builder(
                 itemCount: state.articals.length,
@@ -52,7 +54,7 @@ class HomeScreen extends StatelessWidget {
           } else if (state is ArticalsFaliuere) {
             return Text(state.err);
           }
-          return Text("news app");
+          return const Text("No articles available");
         }));
   }
 }

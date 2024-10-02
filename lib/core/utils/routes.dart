@@ -8,22 +8,29 @@ import '../../features/onboarding/onboarding.dart';
 import 'constant.dart';
 import '../../features/home/model/NewsModel.dart'; // Import the Article model
 
+class RoutesString {
+  static const String onBoardingScreen = 'onBoardingScreen';
+  static const String homeScreen = 'homeScreen';
+  static const String newsDetailScreen = 'newsDetailScreen';
+  static const String splashScreen = 'splashScreen';
+}
+
 class AppRoutes {
-  Route<dynamic>? onGenerateRoute(RouteSettings settings) {
+  static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
+
     switch (settings.name) {
-      case ConstantString.splashScreen:
-        return MaterialPageRoute(builder: (context) => SplashScreen());
+      case RoutesString.splashScreen:
+        return MaterialPageRoute(builder: (context) => const SplashScreen());
 
-      case ConstantString.onBoardingScreen:
-        return MaterialPageRoute(builder: (context) => OnBoarding());
+      case RoutesString.onBoardingScreen:
+        return MaterialPageRoute(builder: (context) => const OnBoarding());
 
-      case ConstantString.homeScreen:
+      case RoutesString.homeScreen:
         return MaterialPageRoute(
           builder: (context) => HomeScreen(),
         );
 
-
-      case ConstantString.newsDetailScreen:
+      case RoutesString.newsDetailScreen:
         final article = settings.arguments as Article;
         return MaterialPageRoute(
           builder: (context) => NewsDetailScreen(article: article),

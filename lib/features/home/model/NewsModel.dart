@@ -24,7 +24,7 @@ class Article {
       description: json["description"] ?? "not know",
       url: json["url"] ?? "not know",
       urlToImage: json["urlToImage"] ?? "not know",
-      publishedAt: DateTime.parse(json["publishedAt"] ?? "not know"),
+      publishedAt: DateTime.tryParse(json["publishedAt"] ?? "not know"),
       content: json["content"] ?? "not know",
     );
   }

@@ -12,11 +12,7 @@ void main() async {
   runApp(
     MultiBlocProvider(providers: [
       BlocProvider(create: (_) => ThemCubit()),
-      BlocProvider(create: (_) {
-        final cubit = ArticalsCubit();
-        cubit.getNews();
-        return cubit;
-      }),
+      BlocProvider(create: (_) => ArticalsCubit()..getNews()),
     ], child: const MyApp()),
   );
 }

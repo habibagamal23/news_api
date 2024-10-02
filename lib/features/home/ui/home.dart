@@ -25,7 +25,8 @@ class HomeScreen extends StatelessWidget {
               icon: Icon(Icons.refresh),
               onPressed: () async {
                 await SharedPrefsHelper.clearPreferences();
-                Navigator.pushReplacementNamed(context, ConstantString.onBoardingScreen);
+                Navigator.pushReplacementNamed(
+                    context, ConstantString.onBoardingScreen);
               },
             ),
             Switch(

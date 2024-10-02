@@ -11,6 +11,7 @@ import '../../features/home/model/NewsModel.dart'; // Import the Article model
 class AppRoutes {
   Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
+
       case ConstantString.splashScreen:
         return MaterialPageRoute(builder: (context) => SplashScreen());
 

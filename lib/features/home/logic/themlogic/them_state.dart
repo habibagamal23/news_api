@@ -7,7 +7,7 @@ abstract class ThemState {
 }
 
 final class ThemInitial extends ThemState {
-  ThemInitial() : super(AppThemes.lightTheme);
+  ThemInitial(ThemeData lightTheme) : super(AppThemes.lightTheme);
 }
 
 final class ThemChanged extends ThemState {

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nwesapi_app/features/home/logic/Articallogic/articals_cubit.dart';
 import 'package:nwesapi_app/features/home/logic/themlogic/them_cubit.dart';
 
+import '../../../core/SharedPrefsHelper.dart';
 import '../../../core/utils/colors_mangment.dart';
 import '../../../core/utils/constant.dart';
 import '../../../core/utils/styles.dart';
@@ -20,6 +21,13 @@ class HomeScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text("News App"),
           actions: [
+            IconButton(
+              icon: Icon(Icons.refresh),
+              onPressed: () async {
+                await SharedPrefsHelper.clearPreferences();
+                Navigator.pushReplacementNamed(context, ConstantString.onBoardingScreen);
+              },
+            ),
             Switch(
               activeColor: Colors.grey,
               inactiveThumbColor: ColorsManager.mainBlue,
